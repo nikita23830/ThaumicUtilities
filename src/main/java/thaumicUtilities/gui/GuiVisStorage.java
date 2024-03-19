@@ -289,8 +289,7 @@ public class GuiVisStorage extends Gui
     
     
     @SideOnly(Side.CLIENT)
-    public void renderRunicArmorBar(EntityPlayer player)
-    {
+    public void renderRunicArmorBar(EntityPlayer player)  {
       Minecraft mc = Minecraft.getMinecraft();
       int total = ((Integer[])Thaumcraft.instance.runicEventHandler.runicInfo.get(Integer.valueOf(player.getEntityId())))[0].intValue();
       int current = ((Integer)Thaumcraft.instance.runicEventHandler.runicCharge.get(Integer.valueOf(player.getEntityId()))).intValue();

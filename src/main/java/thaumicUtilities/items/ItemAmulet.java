@@ -34,11 +34,11 @@ public class ItemAmulet extends ItemAmuletVis implements IRunicArmor{
     }
     
     
-    private Aspect[] aspects = {Aspect.ORDER, Aspect.ENTROPY, Aspect.EARTH, Aspect.WATER, Aspect.AIR, Aspect.FIRE};
+    private final Aspect[] aspects = {Aspect.ORDER, Aspect.ENTROPY, Aspect.EARTH, Aspect.WATER, Aspect.AIR, Aspect.FIRE};
     
     public void onUpdate(ItemStack itemstack, EntityPlayer player) {
 		if (player.ticksExisted % 100 == 0) {
-			List lowAspects = new ArrayList();
+			List<Aspect> lowAspects = new ArrayList<Aspect>();
 			for (int i=0; i<6; i++) {
 				double visCount = ((ItemAmulet) itemstack.getItem()).getVis(itemstack, this.aspects[i]);
 				double cutoffPercent = (((((ItemAmulet) itemstack.getItem()).getMaxVis(itemstack))));
@@ -46,10 +46,10 @@ public class ItemAmulet extends ItemAmuletVis implements IRunicArmor{
 					lowAspects.add(aspects[i]);
 				}
 			}
-			if (lowAspects.size() > 0) {
-				for (int i=0; i<lowAspects.size(); i++) {
-					((ItemAmulet) itemstack.getItem()).addVis(itemstack, (Aspect) lowAspects.get(i), 1, true);
-				}
+			if (!lowAspects.isEmpty()) {
+                for (Aspect lowAspect : lowAspects) {
+                    ((ItemAmulet) itemstack.getItem()).addVis(itemstack, lowAspect, 1, true);
+                }
 			}	
 		
 		}
